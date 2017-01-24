@@ -15,9 +15,12 @@ class sendMail():
         self.msg = " "
         
     def sendMsg(self, toaddrs):
-        server = smtplib.SMTP('smtp.gmail.com:587')
-        server.starttls()
-        server.login(self.username,self.password)
-        server.sendmail(self.fromaddr, toaddrs, self.msg)
-        server.quit()
-        self.resetMsg()
+        try:
+            server = smtplib.SMTP('smtp.gmail.com:587')
+            server.starttls()
+            server.login(self.username,self.password)
+            server.sendmail(self.fromaddr, toaddrs, self.msg)
+            server.quit()
+            self.resetMsg()
+        except:
+            print "error sending email"
